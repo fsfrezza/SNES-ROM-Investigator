@@ -27,5 +27,5 @@ O repositório declara GPL-3.0. Antes de incorporar código, registrar arquivos 
 
 ## Política inicial
 
-Nesta fase foram criados apenas documentos próprios. Nenhum código, ROM ou recurso dos projetos acima foi copiado. As referências são candidatas de integração, ainda sem testes locais.
+A prévia inclui metadados de referência derivados do disassembly ISS Deluxe: mapa de RAM e um subconjunto de intervalos diretos de recursos. Fontes, proveniência e licença estão documentadas em THIRD_PARTY.md. Nenhuma ROM, gráfico ou amostra comercial foi incorporada. O SNESRecomp permanece uma ferramenta externa opcional; seu adaptador ainda não foi validado com a instalação upstream.
 
