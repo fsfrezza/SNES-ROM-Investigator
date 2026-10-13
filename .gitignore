@@ -12,6 +12,7 @@ local-projects/
 node_modules/
 __pycache__/
 .test-output/
+test-output/
 *.zip
 .env
 .env.*

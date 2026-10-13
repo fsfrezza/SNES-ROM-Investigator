@@ -29,5 +29,5 @@ jobs:
           path: |
             portable/SNES-ROM-Investigator.html
             SNES-ROM-Investigator-0.1.0.zip
-            .test-output/*.png
+            test-output/*.png
           if-no-files-found: warn

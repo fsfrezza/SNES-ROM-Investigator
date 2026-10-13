@@ -21,8 +21,10 @@ Antes de exportar uma ROM editada, o checksum pode ser recalculado com o botão 
 
 ## Validação realizada localmente
 
-- 14 testes iniciais do núcleo passaram, cobrindo hashes, cabeçalhos, endereço, tiles, paletas, edições, projeto, IPS, diferenças, 65816, BRR, símbolos, bancos e checksum.
+- 16 testes do núcleo passaram, cobrindo hashes, cabeçalhos, endereço, tiles, paletas, edições, projeto, IPS, diferenças, 65816, BRR, símbolos, bancos e checksum.
 - ROM Plus do usuário: hashes conferidos com Node crypto; exportação sem edição idêntica byte a byte; edição/reabertura de projeto e desfazer conferidos.
 - Scripts embutidos no HTML passam na verificação sintática.
 
-O navegador de testes não pôde ser instalado neste ambiente. A suíte Playwright foi preparada para executar no GitHub Actions; seu resultado deve ser consultado em Actions antes de considerar a interface validada.
+A suíte Playwright passou no GitHub Actions, em Chromium: demonstração, edição, desfazer, projeto, busca, tiles, paleta, BRR, disassembly, símbolos, anotações seguras, tela pequena e ausência de chamadas de rede. O teste com ROM real foi feito no núcleo localmente; a ROM particular não foi enviada ao CI.
+
+Execução inicial validada: https://github.com/fsfrezza/SNES-ROM-Investigator/actions/runs/38377872474. Testes adicionais de mapa, catálogo, PNG e checksum estão na suíte atual.
