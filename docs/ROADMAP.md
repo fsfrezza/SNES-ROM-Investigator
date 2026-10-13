@@ -1,49 +1,39 @@
 # Roteiro de desenvolvimento
 
-Todos os itens estão pendentes.
+## Entregue na prévia 0.1.0
 
-## 1. Núcleo de investigação
+- Núcleo local de cabeçalho, hashes e mapeamento padrão.
+- Editor hexadecimal, busca, comparação e projetos com identidade verificada.
+- Tiles planares, pintura, paletas e PNG.
+- Bloco linear 65816 e amostra BRR → WAV.
+- Mapa de bancos e possíveis textos ASCII.
+- 119 símbolos de RAM e 938 intervalos diretos ISS Deluxe USA.
+- Exportação de ROM, IPS e checksum opcional.
+- Fonte completo, gerador portátil e suíte de testes.
 
-- Abrir .sfc e .smc; detectar cabeçalho de copiador por validação.
-- Calcular identidade, apresentar cabeçalho e identificar mapeamentos suportados.
-- Navegar entre endereço CPU e offset de arquivo.
-- Visualizar hexadecimal e tiles com paleta selecionável.
-- Salvar e reabrir anotações em projeto.
+## Próximo marco: recursos com contexto
 
-Conclusão: testes com ROMs sintéticas cobrem mapeamento, limites e persistência; formatos desconhecidos geram diagnóstico claro.
+- Validar o catálogo contra a ROM USA original.
+- Importar registros compostos e paletas especiais.
+- Decodificar compressões do ISS Deluxe.
+- Associar tiles, paletas e composições OAM para mostrar sprites completos.
+- Validar diferenças do Plus e construir um perfil distinto.
+- Implementar busca de referências e integração de traces.
 
-## 2. Perfil ISS Deluxe USA
+Conclusão: um conjunto delimitado de sprites é extraído, editado, reinserido e conferido na execução original.
 
-- Importar símbolos e mapas com origem rastreável.
-- Validar a ROM-base esperada.
-- Implementar extração de um conjunto delimitado de recursos.
-- Visualizar pelo menos um sprite composto com paleta correta.
+## Marco seguinte: análise e recompilação
 
-Conclusão: comparar recursos com a execução original e documentar os intervalos ainda desconhecidos.
+- Integrar o contrato de CLI SNESRecomp na interface.
+- Fixar versão do framework e configurar o título.
+- Resolver limites de função e despachos indiretos com evidências.
+- Testar boot, menus e cenário de partida reproduzível.
 
-## 3. Edição e reconstrução
+Conclusão: port executa os cenários documentados e possui relatório de divergências; teste de boot não significa suporte completo.
 
-- Editar uma paleta ou recurso validado.
-- Gerar cópia modificada e relatório de alterações.
-- Verificar reconstrução sem mudanças.
-- Validar o recurso editado em execução.
+## Recursos modernos e generalização
 
-Conclusão: identidade da base preservada, geração reproduzível e ausência de alterações fora do escopo previsto.
-
-## 4. Prova de recompilação
-
-- Fixar versão do SNESRecomp.
-- Gerar C e configurar integração do título.
-- Investigar caminhos indiretos e código alcançado dinamicamente.
-- Testar boot, menus e um cenário de partida reproduzível.
-
-Conclusão: port executa os cenários definidos e possui relatório de divergências. Não anunciar suporte completo a partir de teste de boot.
-
-## 5. Recursos modernos e generalização
-
-- Substituir um recurso visual ou sonoro mantendo eventos e sincronização.
-- Adicionar um segundo jogo para verificar a separação entre núcleo e perfil.
-- Desenvolver perfil Deluxe Plus mediante comparação validada.
-- Ampliar análise de execução e ferramentas de documentação.
-
-Conclusão: segundo jogo usa o mesmo núcleo sem pressupostos específicos do ISS; melhorias são testadas individualmente.
+- Substituir um recurso visual e um evento de áudio no port.
+- Adicionar um segundo jogo para verificar a separação núcleo/perfil.
+- Ampliar mecanismos de descoberta com confiança e proveniência.
+- Avaliar aplicativo desktop após validar a bancada portátil.

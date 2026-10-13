@@ -1,4 +1,4 @@
-# ROMs e dados locais
+# User data, environments, builds
 *.sfc
 *.smc
 *.fig
@@ -9,26 +9,12 @@ roms/
 extracted/
 traces/
 local-projects/
-
-# Resultados de compilação e geração
-build/
-dist/
-out/
-generated/
-src/gen/
-
-# Ambientes e caches
-.venv/
-venv/
-__pycache__/
-*.py[cod]
 node_modules/
-target/
+__pycache__/
+.test-output/
+*.zip
 .env
 .env.*
 !.env.example
-
-# Arquivos de sistema e editor
 .DS_Store
 Thumbs.db
-*.log

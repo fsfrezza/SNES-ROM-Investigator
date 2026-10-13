@@ -28,3 +28,4 @@ O repositório declara GPL-3.0. Antes de incorporar código, registrar arquivos 
 ## Política inicial
 
 Nesta fase foram criados apenas documentos próprios. Nenhum código, ROM ou recurso dos projetos acima foi copiado. As referências são candidatas de integração, ainda sem testes locais.
+

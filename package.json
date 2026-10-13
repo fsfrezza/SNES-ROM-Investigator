@@ -1,0 +1,13 @@
+{
+  "name": "snes-rom-investigator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local SNES ROM investigation and editing workbench",
+  "scripts": {
+    "build": "node tools/build.js",
+    "test": "node --test tests/core.test.js",
+    "test:ui": "node tests/ui.test.js"
+  },
+  "engines": { "node": ">=22" },
+  "devDependencies": { "playwright": "1.62.1" }
+}

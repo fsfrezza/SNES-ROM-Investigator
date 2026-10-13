@@ -1,48 +1,33 @@
-# Arquitetura proposta
+# Arquitetura da prévia
 
-Esta especificação descreve o desenho pretendido; não representa implementação existente.
+## Implementado
 
-## Componentes
-
-| Componente | Responsabilidade |
+| Caminho | Responsabilidade |
 |---|---|
-| Núcleo de ROM | Identidade, cabeçalho, bancos, conversão de endereços e limites |
-| Análise | Decodificação 65816, estado M/X, fluxo de controle e referências |
-| Catálogo | Blocos de dados, gráficos, paletas, composição de sprites, textos e áudio |
-| Perfis | Revisões suportadas, formatos, compressão, tabelas e regras específicas |
-| Observação de execução | Importar traces e relacionar acessos com recursos e rotinas |
-| Projeto | Alterações, anotações, recursos externos e proveniência |
-| Reconstrução | Aplicar mudanças em cópia, validar ponteiros e gerar resultados determinísticos |
-| Recompilação | Adaptador externo para SNESRecomp e configuração por título |
-| Interface | Exploração, comparação, edição, visualização e diagnósticos |
+| `src/core.js` | Funções puras, identidade ROM, mapeamento padrão, recursos, edição e projeto |
+| `src/app.js` | Interface local e ações sobre arquivos selecionados |
+| `src/index.html`, `src/style.css` | Layout responsivo da bancada |
+| `profiles/` | Fontes do perfil de referência |
+| `tools/build-profile.js` | Gerar símbolos e catálogo de perfil |
+| `tools/build.js` | Embutir código, estilos e perfil num HTML sem dependências |
+| `portable/` | Aplicativo distribuído |
+| `tools/snesrecomp_bridge.py` | Preparar chamada de uma instalação local externa |
+| `tests/` | Núcleo sintético e automação da interface |
 
-## Modelo de projeto
+## Projeto
 
-A ROM-base é imutável e identificada por hash. O projeto referencia essa base e guarda operações de edição, símbolos e recursos. Ao abrir um projeto, a identidade da base deve ser verificada. A geração produz um arquivo separado.
+A base é normalizada sem cabeçalho de copiador e identificada por SHA-256. O arquivo raw conserva o cabeçalho original para exportação. Edições usam transações e diferenças por offset. O projeto versionado guarda edições, anotações e parâmetros da interface; a ROM não é embutida.
 
-Cada descoberta registra tipo, intervalo, espaço de endereços, revisão, origem, evidência e confiança. Endereço CPU e offset de arquivo são campos distintos. Cabeçalho de copiador e espelhamentos precisam ser considerados.
+A carga do projeto valida todas as edições e anotações antes de substituir o estado. Base incorreta, offset inválido, byte inválido ou formato incompatível são rejeitados.
 
-Estados de confiança: confirmado, observado, provável e desconhecido. Cobertura de execução é distinta de compreensão semântica. Dados não vistos em um trace não podem ser automaticamente declarados inúteis.
+## Perfis e confiança
 
-## Perfis
+O perfil ISS USA é somente uma referência de metadados importados. Seu MD5 controla a habilitação de acesso ao catálogo. A consulta em outra ROM exige escolha explícita e não constitui validação.
 
-Perfis devem declarar identidade e revisões aceitas, assinaturas verificáveis, símbolos, formatos e restrições de edição. Um perfil incompatível não aplica alterações automaticamente.
+Anotações distinguem confirmado, observado, provável e desconhecido. Medidas de entropia e candidatos ASCII nunca são classificações semânticas automáticas.
 
-O primeiro adaptador importará informações do disassembly ISS Deluxe. Assembly Asar possui macros e expressões: um leitor de texto simples não pode ser tratado como avaliador completo. A importação deve preservar trechos não resolvidos e a origem dos símbolos.
+## Ainda proposto
 
-## Recursos
+Análise de fluxo global, compressão, composição OAM, drivers musicais, execução instrumentada, reconstrução por Asar e port via SNESRecomp são extensões futuras. Componentes de hardware SNES não estão incluídos no aplicativo portátil.
 
-A visualização de tiles não comprova que um personagem completo foi recuperado. Sprites podem depender de composição OAM, paletas, flips, poses e gráficos dinâmicos.
-
-Extração de BRR não recupera por si só partitura ou eventos musicais. Drivers SPC700 e formatos de sequência podem variar por título.
-
-## Validação
-
-- Reconstrução sem edição deve reproduzir byte a byte a ROM normalizada, com política explícita para cabeçalho.
-- Edições devem respeitar limites, bancos, ponteiros e compressão.
-- Comparações de execução devem usar entradas e cenários reproduzíveis.
-- Ports precisam comparar estado relevante, imagem e áudio com uma referência; compilar não comprova jogabilidade.
-
-## Tecnologia
-
-A stack da interface e do núcleo ainda não foi escolhida. A integração inicial com SNESRecomp deve preferir seu contrato de CLI e progresso JSON, com versão fixada e testes de compatibilidade.
+A interface não faz chamadas de rede. O CSP bloqueia conexões, plugins e formulários; os arquivos selecionados ficam no documento local. Não há armazenamento persistente automático.
